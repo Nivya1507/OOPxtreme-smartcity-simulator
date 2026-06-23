@@ -266,6 +266,12 @@ public:
                 size_t currentStopIndex = vehicle->getCurrentStopIndex();
                 size_t nextStopIndex = (currentStopIndex + 1) % r.getStopCount();
                 size_t targetStopIndex = (nextStopIndex + 1) % r.getStopCount();
+                size_t newStopIndex = nextStopIndex;
+
+                if (nextStopIndex == r.getStopCount() - 1) {
+                    targetStopIndex = 1;
+                    newStopIndex = 0;
+                }
 
                 std::string from = r[nextStopIndex];
                 std::string to = r[targetStopIndex];
@@ -331,7 +337,7 @@ public:
                     vehicle->setPositions(fromInter->x, fromInter->y, toInter->x, toInter->y);
                     vehicle->setSegment(from, to);
                     vehicle->setProgress(0.0);
-                    vehicle->setCurrentStopIndex(nextStopIndex);
+                    vehicle->setCurrentStopIndex(newStopIndex);
                     vehicle->setIsMoving(true);
 
                     // Dynamic board passengers for Transit
