@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOPXtreme: Smart City Traffic & Transit Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header animate-fade-in">
+            <div class="logo-area">
+                <span class="badge">HACKATHON ENTRY</span>
+                <h1>OOP<span>Xtreme</span></h1>
+                <p>Advanced C++ Smart City Traffic & Transit Simulator</p>
+            </div>
+            <div class="sim-controls">
+                <button id="step-btn" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Step
+                </button>
+                <button id="play-btn" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                    Pause Sim
+                </button>
+                <div class="status-indicator">
+                    <span class="dot pulse"></span>
+                    <span id="sim-status-txt">Engine: Running</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            
+            <!-- Left Panel: Canvas Visualizer -->
+            <section class="card visualizer animate-slide-in">
+                <div class="card-header">
+                    <h2>Live Simulation Grid</h2>
+                    <span class="tip-badge">Click Intersections to Toggle Light | Click Roads to Block</span>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="simCanvas" width="800" height="800"></canvas>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-dot green"></span>Adaptive Signal (Green)</div>
+                    <div class="legend-item"><span class="legend-dot red"></span>Adaptive Signal (Red)</div>
+                    <div class="legend-item"><span class="legend-dot bus"></span>Standard Bus</div>
+                    <div class="legend-item"><span class="legend-dot electric"></span>Electric Bus</div>
+                    <div class="legend-item"><span class="legend-dot emergency"></span>Emergency Vehicle</div>
+                    <div class="legend-item"><span class="legend-dot blocked"></span>Blocked Road</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Controls & Telemetries -->
+            <section class="right-panel animate-slide-in-right">
+                
+                <!-- Controls Card -->
+                <div class="card controls">
+                    <h2>Simulation Command Center</h2>
+                    <div class="tab-content">
+                        <h3>Spawn Telemetry Target</h3>
+                        <div class="spawn-form">
+                            <div class="form-group">
+                                <label for="vehicle-type">Vehicle Type</label>
+                                <select id="vehicle-type">
+                                    <option value="Bus">Standard Diesel Bus (Single Inheritance)</option>
+                                    <option value="ElectricBus">Autonomous Electric Bus (Multiple Inheritance)</option>
+                                    <option value="Emergency">Emergency Ambulance (Polymorphic Routing)</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicle-id">Vehicle ID</label>
+                                    <input type="text" id="vehicle-id" placeholder="e.g. EB-102" value="BUS-01">
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicle-route">Route</label>
+                                    <select id="vehicle-route">
+                                        <option value="Red_Line_Loop">Red Line (Outer Clockwise)</option>
+                                        <option value="Blue_Line_Loop">Blue Line (Outer Counter-Clockwise)</option>
+                                        <option value="Shuttle_West_East">West-East Shuttle (Line E)</option>
+                                        <option value="Shuttle_North_South">North-South Shuttle (Line B-H)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="spawn-btn" class="btn btn-accent full-width">Spawn & Link Vehicle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception Logger Card -->
+                <div class="card logger">
+                    <div class="card-header">
+                        <h2>Engine Logs & Exception Catch Feed</h2>
+                        <button id="clear-logs-btn" class="btn-text">Clear</button>
+                    </div>
+                    <div id="log-feed" class="log-feed">
+                        <div class="log-entry system">System initialized. Waiting for vehicle telemetry...</div>
+                    </div>
+                </div>
+
+                <!-- Telemetry Board -->
+                <div class="card telemetry">
+                    <h2>Real-Time Fleet Analytics</h2>
+                    <div class="table-container">
+                        <table id="telemetry-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Segment</th>
+                                    <th>Speed</th>
+                                    <th>Load</th>
+                                    <th>Fare</th>
+                                    <th>Power/Siren</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="empty-row">
+                                    <td colspan="7">No active vehicles. Spawn one to start.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer animate-fade-in">
+            <p>OOPXtreme Hackathon 2026 - Designed with Modern C++17, HTTP socket architecture, and beautiful responsive HTML Canvas UI.</p>
+        </footer>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

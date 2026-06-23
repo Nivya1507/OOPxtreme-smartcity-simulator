@@ -1,0 +1,14 @@
+# Binary executables
+server.exe
+*.exe
+*.o
+*.obj
+
+# Dynamic simulation logs
+data/simulation_log.txt
+
+# Editor/OS temporary files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

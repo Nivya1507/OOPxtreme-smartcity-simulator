@@ -1,0 +1,47 @@
+# Smart City Simulation Network Configuration
+# Format: NODE id x y name
+NODE A 100 100 Downtown Hub
+NODE B 400 100 North Plaza
+NODE C 700 100 Business Park
+NODE D 100 400 West Residential
+NODE E 400 400 Central Crossing
+NODE F 700 400 East Terminal
+NODE G 100 700 South Gate
+NODE H 400 700 Tech District
+NODE I 700 700 Innovation Center
+
+# Format: EDGE nodeA nodeB maxSpeed capacity
+# Horizontal connections (Bidirectional)
+EDGE A B 60 5
+EDGE B A 60 5
+EDGE B C 60 5
+EDGE C B 60 5
+EDGE D E 50 8
+EDGE E D 50 8
+EDGE E F 50 8
+EDGE F E 50 8
+EDGE G H 60 5
+EDGE H G 60 5
+EDGE H I 60 5
+EDGE I H 60 5
+
+# Vertical connections (Bidirectional)
+EDGE A D 60 5
+EDGE D A 60 5
+EDGE D G 60 5
+EDGE G D 60 5
+EDGE B E 50 8
+EDGE E B 50 8
+EDGE E H 50 8
+EDGE H E 50 8
+EDGE C F 60 5
+EDGE F C 60 5
+EDGE F I 60 5
+EDGE I F 60 5
+
+# Predefined Routes for Transit Vehicles
+# Format: ROUTE routeId nodeA nodeB nodeC ...
+ROUTE Red_Line_Loop A B C F I H G D A
+ROUTE Blue_Line_Loop I F C B A D G H I
+ROUTE Shuttle_West_East D E F E D
+ROUTE Shuttle_North_South B E H E B
